@@ -11,6 +11,11 @@ or
 go install && $GOBIN/webservicetask
 ```
 
+## Query the service
+```bash
+curl localhost:8000?name=charlie
+```
+
 ## Lesson 1 tasks
 - Change the output of the service from plain text to json.
 - Allow a port to be passed in as a flag for the service to run on
