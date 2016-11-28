@@ -23,3 +23,8 @@ curl localhost:8000?name=charlie
     1. Check the name is present. Return an error message informing the client if not 
     2. The name must greater the one character long
 - Create a seperate function which handles the sending of the response and supports multiple status codes to be passed in
+
+## Lesson 2 tasks
+
+- Add unit tests for all functions
+- Benchmark at least on function

@@ -1,30 +1,59 @@
 package main
 
 import (
+	"encoding/json"
+	"flag"
 	"fmt"
-	"io"
 	"net/http"
 )
 
-// Docs
-// https://golang.org/pkg/net/http
-// https://golang.org/pkg/io/#Writer
+type Reponse struct {
+	Code   int    `json:"code"`
+	Result string `json:"result"`
+}
 
-// This is our function we are going to use to handle the request
-// All handlers need to accept two arguments
-// 1. Is the ResponseWriter interface, we use this to write a reponse back to the client
-// 2. Is the Reponse struct which holds useful information about the request headers, method, url etc
+func sendReponse(
+	res string,
+	w http.ResponseWriter,
+	code int,
+) {
+	if code == 500 {
+		res = "Bad request"
+	}
+	r := Reponse{
+		Code:   code,
+		Result: res,
+	}
+	js, err := json.Marshal(r)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(code)
+	w.Write(js)
+}
+
 func hello(w http.ResponseWriter, r *http.Request) {
-	// We use the standard libaries WriteStirng function to write back to the ResponseWriter interface
-	// See docs above
-	io.WriteString(w, fmt.Sprintf("%s %s", "hello", r.FormValue("name")))
+	// Build the response struct
+	name := r.FormValue("name")
+	code := 200
+	res := ""
+	if len(name) == 0 {
+		code = 422
+	} else {
+		res = fmt.Sprintf("%s %s", "hello", name)
+	}
+
+	sendReponse(res, w, code)
 }
 
 func main() {
-	// Add ads the function thats going to handle that response
+	port := flag.String("port", "8000", "Server port")
+	flag.Parse()
+
 	http.HandleFunc("/", hello)
+
 	// Starts the web server
-	// The first argument in this method is the port you want your server to run on
-	// The second is a handler. However we have already added this in the line above so we just pass in nil
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":"+*port, nil)
 }
