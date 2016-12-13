@@ -9,6 +9,9 @@ or
 ```bash
 go install && $GOBIN/webservicetask
 ```
+## Lesson 3
+- Change you're service to use context for requests
+- When a developer is requested, search for that developers name on Google and return the first result as part of your result. Make your request to Google concurrent.
 
 ## Lesson 2 
 We now need to improve our service a little. The service now needs to hold details of developers and expose two endpoints
