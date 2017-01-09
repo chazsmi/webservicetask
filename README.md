@@ -9,6 +9,12 @@ or
 ```bash
 go install && $GOBIN/webservicetask
 ```
+## Lesson 4 
+- Change the service to store its data in Mysql 
+- Think about about how you can abstract away the database detail
+- Change the rest of you're service to use the database code
+- Run you're service with a static binary
+
 ## Lesson 3
 - Change you're service to use context for requests
 - When a developer is requested, search for that developers name on Google and return the first result as part of your result. Make your request to Google concurrent.
