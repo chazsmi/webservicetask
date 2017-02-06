@@ -9,6 +9,10 @@ or
 ```bash
 go install && $GOBIN/webservicetask
 ```
+## Lesson 5
+- Refactor your code into seperate packages if you havent already done so
+- See if you can refactor your code to use you're favourite design pattern
+
 ## Lesson 4 
 - Change the service to store its data in Mysql 
 - Think about about how you can abstract away the database detail
