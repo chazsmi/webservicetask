@@ -10,7 +10,7 @@ or
 go install && $GOBIN/webservicetask
 ```
 ## Lesson 6 
-- Add profiling and benchmarking tools reafactor your application to make it more efficent and reducing memory allocations.
+- Using profiling and benchmarking tools reafactor your application to make it more efficent and reducing memory allocations.
 
 ## Lesson 5
 - Refactor your code into seperate packages if you havent already done so
